@@ -20,23 +20,41 @@ app.get("/api/anime", (req, res) => {
       title: "Naruto",
       genre: "Action",
       rating: 8.5,
-      image: "https://via.placeholder.com/300"
+      image: "/images/naruto_poster.png"
     },
     {
       id: 2,
       title: "Attack on Titan",
       genre: "Dark Fantasy",
       rating: 9.0,
-      image: "https://via.placeholder.com/300"
+      image: "/images/aot_poster.png"
     },
     {
       id: 3,
-      title: "Demon Slayer",
+      title: "One Piece",
       genre: "Adventure",
-      rating: 8.7,
-      image: "https://via.placeholder.com/300"
+      rating: 9.5,
+      image: "/images/one_piece_poster.png"
     }
   ]);
+});
+
+// Mock Authentication Routes
+app.post("/api/auth/signup", (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+  res.status(201).json({ message: "User created successfully" });
+});
+
+app.post("/api/auth/login", (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+  // Mock successful login
+  res.json({ token: "mock-jwt-token-123", user: { email } });
 });
 
 // Azure uses process.env.PORT

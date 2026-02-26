@@ -1,0 +1,27 @@
+{
+  "name": "kurokage",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000k\u0000u\u0000r\u0000o\u0000k\u0000a\u0000g\u0000e\u0000-\u0000w\u0000e\u0000b\u0000a\u0000p\u0000p\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhishekkumar2484/kurokage-webapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Abhishekkumar2484/kurokage-webapp/issues"
+  },
+  "homepage": "https://github.com/Abhishekkumar2484/kurokage-webapp#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
