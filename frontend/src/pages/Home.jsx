@@ -84,10 +84,10 @@ function Home() {
                         {anime.map((a) => (
                             <div key={a.id} className="card">
                                 <img src={a.image} alt={a.title} />
-                                <div style={{ padding: '15px', textAlign: 'center' }}>
+                                <div className="card-overlay">
                                     <h3>{a.title}</h3>
-                                    <p>{a.genre}</p>
-                                    <p>⭐ {a.rating}</p>
+                                    <p className="card-genre">{a.genre}</p>
+                                    <p className="card-rating">⭐ {a.rating}</p>
                                 </div>
                             </div>
                         ))}
