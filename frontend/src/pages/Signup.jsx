@@ -6,6 +6,7 @@ function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("reader");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ function Signup() {
             const res = await fetch(`${apiUrl}/api/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, password }),
+                body: JSON.stringify({ name, email, password, role }),
             });
 
             const data = await res.json();
@@ -67,6 +68,19 @@ function Signup() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                    </div>
+                    <div className="input-group">
+                        <label>Role</label>
+                        <div style={{ display: "flex", gap: "15px", color: "white" }}>
+                            <label style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer" }}>
+                                <input type="radio" value="reader" checked={role === "reader"} onChange={(e) => setRole(e.target.value)} />
+                                Reader
+                            </label>
+                            <label style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer" }}>
+                                <input type="radio" value="creator" checked={role === "creator"} onChange={(e) => setRole(e.target.value)} />
+                                Creator
+                            </label>
+                        </div>
                     </div>
                     <button type="submit" className="auth-button">Sign Up</button>
                 </form>

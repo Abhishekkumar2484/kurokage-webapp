@@ -25,6 +25,7 @@ function Login() {
 
             // Mock success logic
             console.log("Logged in successfully", data);
+            localStorage.setItem("user", JSON.stringify(data.user));
             navigate("/");
         } catch (err) {
             setError(err.message);

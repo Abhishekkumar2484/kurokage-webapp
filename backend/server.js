@@ -39,13 +39,24 @@ app.get("/api/anime", (req, res) => {
   ]);
 });
 
+const users = []; // In-memory store for mock users
+
 // Mock Authentication Routes
 app.post("/api/auth/signup", (req, res) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
+  const { name, email, password, role } = req.body;
+  if (!name || !email || !password || !role) {
     return res.status(400).json({ error: "All fields are required" });
   }
-  res.status(201).json({ message: "User created successfully" });
+
+  // Check if user exists
+  if (users.find(u => u.email === email)) {
+    return res.status(400).json({ error: "User already exists" });
+  }
+
+  const newUser = { name, email, password, role };
+  users.push(newUser);
+
+  res.status(201).json({ message: "User created successfully", user: { name, email, role } });
 });
 
 app.post("/api/auth/login", (req, res) => {
@@ -53,8 +64,14 @@ app.post("/api/auth/login", (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
+
+  const user = users.find(u => u.email === email && u.password === password);
+  if (!user) {
+    return res.status(401).json({ error: "Invalid credentials" });
+  }
+
   // Mock successful login
-  res.json({ token: "mock-jwt-token-123", user: { email } });
+  res.json({ token: "mock-jwt-token-123", user: { name: user.name, email: user.email, role: user.role } });
 });
 
 // Azure uses process.env.PORT

@@ -6,11 +6,17 @@ function Home() {
     const [anime, setAnime] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+
         // ⚠️ Setup API URL via Environment Variables
-        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/api/anime";
-        fetch(apiUrl)
+        const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        fetch(`${baseUrl}/api/anime`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error("Failed to fetch data");
@@ -32,13 +38,40 @@ function Home() {
             {/* HERO SECTION */}
             <div className="hero">
                 {/* NAVIGATION BAR OVERLAY */}
-                <nav style={{ position: 'absolute', top: 0, right: 0, padding: '20px', display: 'flex', justifyContent: 'flex-end', gap: '15px', width: '100%' }}>
-                    <Link to="/login" className="auth-button" style={{ textDecoration: 'none', padding: '10px 20px', borderRadius: '5px' }}>Login</Link>
-                    <Link to="/signup" className="auth-button" style={{ textDecoration: 'none', padding: '10px 20px', borderRadius: '5px', backgroundColor: 'transparent', border: '1px solid #ff4757' }}>Sign Up</Link>
+                <nav className="navbar">
+                    <div className="nav-logo">
+                        <span style={{ color: '#ff2052', fontWeight: 'bold', fontSize: '1.5rem' }}>KuroKage</span>
+                    </div>
+                    <div className="nav-links">
+                        <a href="#">HOME</a>
+                        <a href="#">BROWSE</a>
+                        <a href="#">PRICING</a>
+                    </div>
+                    <div className="nav-auth">
+                        {user ? (
+                            <>
+                                <span style={{ color: 'white', fontWeight: 'bold' }}>Welcome, {user.name}</span>
+                                {user.role === 'creator' && (
+                                    <button className="nav-btn">Upload Manga</button>
+                                )}
+                                <button onClick={() => { localStorage.removeItem("user"); setUser(null); }} className="nav-btn">Logout</button>
+                            </>
+                        ) : (
+                            <Link to="/login" className="nav-btn">LOGIN</Link>
+                        )}
+                    </div>
                 </nav>
 
-                <h1>KuroKage</h1>
-                <p>Stream Your Shadow</p>
+                <div className="hero-content">
+                    <h1><span style={{ color: '#ff2052' }}>KuroKage</span><br />Stream Your Shadow</h1>
+                    <p className="hero-description">
+                        The next generation of anime streaming. High fidelity visuals, exclusive titles, and an atmospheric community waiting for you.
+                    </p>
+                    <div className="hero-buttons">
+                        <button className="btn-primary">Start Your Journey</button>
+                        <button className="btn-secondary">Watch Trailer</button>
+                    </div>
+                </div>
             </div>
 
             {/* CONTENT SECTION */}
