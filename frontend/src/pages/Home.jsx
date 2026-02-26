@@ -29,14 +29,14 @@ function Home() {
 
     return (
         <div>
-            {/* NAVIGATION BAR */}
-            <nav style={{ padding: '20px', display: 'flex', justifyContent: 'flex-end', gap: '15px' }}>
-                <Link to="/login" className="auth-button" style={{ textDecoration: 'none', padding: '10px 20px', borderRadius: '5px' }}>Login</Link>
-                <Link to="/signup" className="auth-button" style={{ textDecoration: 'none', padding: '10px 20px', borderRadius: '5px', backgroundColor: 'transparent', border: '1px solid #ff4757' }}>Sign Up</Link>
-            </nav>
-
             {/* HERO SECTION */}
             <div className="hero">
+                {/* NAVIGATION BAR OVERLAY */}
+                <nav style={{ position: 'absolute', top: 0, right: 0, padding: '20px', display: 'flex', justifyContent: 'flex-end', gap: '15px', width: '100%' }}>
+                    <Link to="/login" className="auth-button" style={{ textDecoration: 'none', padding: '10px 20px', borderRadius: '5px' }}>Login</Link>
+                    <Link to="/signup" className="auth-button" style={{ textDecoration: 'none', padding: '10px 20px', borderRadius: '5px', backgroundColor: 'transparent', border: '1px solid #ff4757' }}>Sign Up</Link>
+                </nav>
+
                 <h1>KuroKage</h1>
                 <p>Stream Your Shadow</p>
             </div>

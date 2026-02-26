@@ -32,7 +32,7 @@ function Login() {
     };
 
     return (
-        <div className="auth-container">
+        <div className="auth-container login-bg">
             <div className="auth-card glass-effect">
                 <h2 className="auth-title">Log in to <span className="highlight-text">KuroKage</span></h2>
                 {error && <p className="auth-error">{error}</p>}

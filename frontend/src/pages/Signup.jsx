@@ -33,7 +33,7 @@ function Signup() {
     };
 
     return (
-        <div className="auth-container">
+        <div className="auth-container signup-bg">
             <div className="auth-card glass-effect">
                 <h2 className="auth-title">Join <span className="highlight-text">KuroKage</span></h2>
                 {error && <p className="auth-error">{error}</p>}
