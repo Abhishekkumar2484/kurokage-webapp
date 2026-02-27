@@ -34,59 +34,83 @@ function Signup() {
     };
 
     return (
-        <div className="auth-container signup-bg">
-            <div className="auth-card glass-effect">
-                <h2 className="auth-title">Join <span className="highlight-text">KuroKage</span></h2>
-                {error && <p className="auth-error">{error}</p>}
-                <form className="auth-form" onSubmit={handleSignup}>
-                    <div className="input-group">
-                        <label>Name</label>
+        <div className="auth-page-wrapper">
+            <Link to="/" className="auth-logo">
+                <span className="logo-kuro">KURO</span><span className="logo-kage">KAGE</span>
+            </Link>
+            <div className="auth-card-modern">
+                <div className="auth-header-modern">
+                    <h2 className="auth-title-modern">Create Account</h2>
+                    <p className="auth-subtitle">Join the next evolution of manga.</p>
+                </div>
+
+                {error && <div className="auth-error-modern">{error}</div>}
+
+                <form className="auth-form-modern" onSubmit={handleSignup}>
+                    <div className="input-group-modern">
+                        <label>Display Name</label>
                         <input
                             type="text"
-                            placeholder="Enter your name"
+                            placeholder="Your name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
+                            className="auth-input-modern"
                         />
                     </div>
-                    <div className="input-group">
-                        <label>Email</label>
+                    <div className="input-group-modern">
+                        <label>Email Address</label>
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="name@kurokage.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            className="auth-input-modern"
                         />
                     </div>
-                    <div className="input-group">
+                    <div className="input-group-modern">
                         <label>Password</label>
                         <input
                             type="password"
-                            placeholder="Create a password"
+                            placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            className="auth-input-modern"
                         />
                     </div>
-                    <div className="input-group">
-                        <label>Role</label>
-                        <div style={{ display: "flex", gap: "15px", color: "white" }}>
-                            <label style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer" }}>
-                                <input type="radio" value="reader" checked={role === "reader"} onChange={(e) => setRole(e.target.value)} />
-                                Reader
-                            </label>
-                            <label style={{ display: "flex", alignItems: "center", gap: "5px", cursor: "pointer" }}>
-                                <input type="radio" value="creator" checked={role === "creator"} onChange={(e) => setRole(e.target.value)} />
-                                Creator
-                            </label>
+
+                    <div className="input-group-modern">
+                        <label>I want to...</label>
+                        <div className="role-selector">
+                            <button
+                                type="button"
+                                className={`role-btn ${role === 'reader' ? 'active-reader' : ''}`}
+                                onClick={() => setRole('reader')}
+                            >
+                                <span className="role-icon">📖</span> Read Manga
+                            </button>
+                            <button
+                                type="button"
+                                className={`role-btn ${role === 'creator' ? 'active-creator' : ''}`}
+                                onClick={() => setRole('creator')}
+                            >
+                                <span className="role-icon">✍️</span> Create Manga
+                            </button>
                         </div>
                     </div>
-                    <button type="submit" className="auth-button">Sign Up</button>
+
+                    <button type="submit" className="btn-primary-pink auth-btn-full">Sign Up</button>
+
+                    <div className="auth-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <p className="auth-switch-modern">
+                        Already have an account? <Link to="/login" className="auth-link-orange">Sign in</Link>
+                    </p>
                 </form>
-                <p className="auth-switch">
-                    Already have an account? <Link to="/login" className="auth-link">Log in</Link>
-                </p>
             </div>
         </div>
     );

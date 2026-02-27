@@ -33,36 +33,52 @@ function Login() {
     };
 
     return (
-        <div className="auth-container login-bg">
-            <div className="auth-card glass-effect">
-                <h2 className="auth-title">Log in to <span className="highlight-text">KuroKage</span></h2>
-                {error && <p className="auth-error">{error}</p>}
-                <form className="auth-form" onSubmit={handleLogin}>
-                    <div className="input-group">
-                        <label>Email</label>
+        <div className="auth-page-wrapper">
+            <Link to="/" className="auth-logo">
+                <span className="logo-kuro">KURO</span><span className="logo-kage">KAGE</span>
+            </Link>
+            <div className="auth-card-modern">
+                <div className="auth-header-modern">
+                    <h2 className="auth-title-modern">Welcome Back</h2>
+                    <p className="auth-subtitle">Enter your details to access your shadow.</p>
+                </div>
+
+                {error && <div className="auth-error-modern">{error}</div>}
+
+                <form className="auth-form-modern" onSubmit={handleLogin}>
+                    <div className="input-group-modern">
+                        <label>Email Address</label>
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder="name@kurokage.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            className="auth-input-modern"
                         />
                     </div>
-                    <div className="input-group">
+                    <div className="input-group-modern">
                         <label>Password</label>
                         <input
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            className="auth-input-modern"
                         />
                     </div>
-                    <button type="submit" className="auth-button">Log In</button>
+
+                    <button type="submit" className="btn-primary-pink auth-btn-full">Sign In</button>
+
+                    <div className="auth-divider">
+                        <span>OR</span>
+                    </div>
+
+                    <p className="auth-switch-modern">
+                        Don't have an account? <Link to="/signup" className="auth-link-orange">Create account</Link>
+                    </p>
                 </form>
-                <p className="auth-switch">
-                    Don't have an account? <Link to="/signup" className="auth-link">Sign up</Link>
-                </p>
             </div>
         </div>
     );
